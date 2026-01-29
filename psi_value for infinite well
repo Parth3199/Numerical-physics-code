@@ -1,0 +1,23 @@
+# The code solves infinte well schrodinger equation to obtain value of $psi$ for given value of x
+import math
+#constants
+a = 0.5 # size of well
+psi_0 = 0
+z_0 = math.sqrt(2/a)*(math.pi/a)
+n = 100 #number of iteration
+psi_x = 0.05 # value of z is required at this point (solution is obtained between 0 and a)
+print(psi_x)
+h = (psi_x - psi_0) / n
+def f(psi):
+    return - (math.pi/a)**2*psi
+# write main program
+for i in range(n):
+    slope  = f(psi_0)
+    zn = z_0 + (h*slope)
+    psi_n = psi_0 + h*z_0
+    z_0 = zn
+    psi_0 = psi_n
+print("Numerical Value of z at",psi_x," = %.4f " %psi_0)
+trig = math.sin(math.pi * psi_x/a)
+psi_act = math.sqrt(2/a)*trig
+print("Actual Value of z at",psi_x," = %.4f" %psi_act)
